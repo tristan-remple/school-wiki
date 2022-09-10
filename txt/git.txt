@@ -64,6 +64,11 @@ git config --global user.name [name]: sets your username (doesnt need to be your
 git config --global user.email [email]: sets your email
 git show HEAD: show changes
 
+git status: tells you what files have been altered or added but not committed
+git tag: adds a label to the current commit
+
+git commit -m "message": includes a description of what you're committing
+
 GITHUB CLASSROOM
 
 -provide skeleton code to the classroom
