@@ -65,7 +65,8 @@ git config --global user.email [email]: sets your email
 git show HEAD: show changes
 
 git status: tells you what files have been altered or added but not committed
-git tag: adds a label to the current commit
+git tag [text]: adds a label to the current (most recent) commit
+git log -1: tells you what the most recent commit was
 
 git commit -m "message": includes a description of what you're committing
 
