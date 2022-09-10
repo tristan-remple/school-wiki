@@ -1,0 +1,17 @@
+using vmware software
+
+vmware: dashboard controller on which you install virtual machines
+
+container/sandbox/virtual machine : computer emulator
+host machine : computer running the emulator
+hypervisor: framework that runs virtual machines
+windows N: has less copyrighted stuff
+
+for logic and programming
+on the virtual machine, install:
+
+windows 10n
+node.js
+visual studio code
+git
+github extension

@@ -1,0 +1,111 @@
+aas: as a service
+
+ACL: access control list
+
+byod: bring your own device
+
+client: device which sends requests to servers
+
+cloud: anything that is stored online
+
+convergence: put all your networks and connections in one place/cable
+
+copper wiring: electric impulses sent through copper wires. the cheapest/slowest
+
+demarcation point: where the WAN connects to the LAN
+
+DSL: digital subscriber line. dedicated to internet only
+
+end device: host device; places where data originates or arrives
+
+entity: an object which has properties (normally a row?)
+
+ERD: entity relationship diagram
+
+extranet: provides a limited connection to your intranet to outsiders
+
+fault tolerance: measures to minimize the impact of failures
+
+fiberoptics: glass transmission of light pulses
+
+ftp: file transfer protocol
+
+geofencing: registers when a device enters a "fenced" area or leaves
+
+HAN: home area network, is also a LAN
+
+host device: any device being used by a person, which has an IP address. see also: end device
+
+host machine: computer running the emulator
+
+hypervisor: framework that runs virtual machines
+
+IDS: intrusion detection system
+
+IETF: internet engineering task force
+
+interface (networking): the data associated with a physical port
+
+intermediary: device which connects end devices (router, etc)
+
+intranet: a private network, not available to outsiders
+
+iot: internet of things (door opener, carbon monoxide sensor, etc)
+
+IPS: intrustion prevention system
+
+ISP: internet service provider
+
+LAN: local area network, a network within one physical location
+
+lease line: business-specific internet cables, direct to the ISP
+
+logical topology diagram: shows how the machines relate to each other
+
+lossy audio: removes inaudible sound and extra data, compresses by 1/10
+
+MAN: metropolitan area network
+
+near-field communication: tap technology and etc
+
+networking: communication and connection
+
+NIC: network interface card. wifi, bluetooth, etc
+
+ntfs: permissions - New Technology File System
+
+packet-tracer: free software through cisco -> localhost network bigger (.pka files)
+
+PAN: personal area network, includes all the bluetooth devices on your person
+
+peer-to-peer: no centralized server, devices act as both client and server
+
+physical port: place where you can plug something in
+
+physical topology diagram: shows where things are in the meatspace
+
+plenum: space between the visual ceiling and the concrete ceiling (where hvac and cables go)
+
+QoS: quality of service. includes prioritization
+
+queuing: order of tasks
+
+scalability: potential to grow
+
+server: device which provice services to end devices
+
+SOHO: small office / home office
+
+switch: where all the network cables connect to in a building
+
+threat actors: hackers
+
+topology diagram: shows where things in the network are in relation to each other
+
+virtual machine: computer emulator
+
+WAN: wide area network. the internet is one
+
+windows N: has less copyrighted stuff
+
+wireless transmission: uses radio waves

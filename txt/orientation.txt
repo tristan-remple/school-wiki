@@ -1,0 +1,76 @@
+INFO FROM HAMLET (ORIENTATION - 22/09/06)
+
+most classes are graded on assignments/projects
+
+figure out if you can handle the program by mid-oct
+
+attendance is not manditory or tracked
+
+recommended: qr business card link to your portfolio
+github repository is checked by many employers
+
+web development textbook is required -> can ebook or rent
+-has exercises
+
+database fundamentals textbook recommended but not as required
+-will be a good reference for up to a decade (he says)
+
+logic and programming: no textbook, changes too fast
+
+need a computer
+but the computer labs are open a lot of the time
+use an external harddrive for virtual machines -> ssd strongly preferred
+
+due dates: theres a late policy, use but dont exploit it
+prioritize your time
+put deadlines in your outlook calendar ?
+
+PAL tutoring
+get help if you need it
+get paid if youre competent
+
+plar applications due sept 21
+
+INFO FROM CHRIS (NETWORKING - 22/09/07)
+
+most materials are on brightspace
+submit assignments through brightspace
+
+late policy (exemption for accessibility agreements)
+-5% per day late if you let prof know in advance
+-if you don't tell him, you get a 0% fail
+
+grades
+>complete / understand all the outcomes
+>60% is a pass
+>50-59% -> you can apply to your professor for a supplemental (project/exam)
+>passing the supplemental results in a "supplemental pass" instead of a percent
+>supplementals are one per semester
+
+safety courses must be done by the end of september
+
+be aware of technology use policy and academic integrity
+be passionate about learning
+difference between using code snippets and plagarism
+if youre feeling overwhelmed, talk to faculty
+
+no place for discrimination. no evil jokes.
+
+brightspace is divided into shells
+click on the course -> content (in the topbar)
+divided then into units
+
+tests can be done on brightspace as well
+
+files are default saved to your student onedrive (1tb)
+more functionality in the client (desktop) app than the browser app
+
+microsoft office school license applies to 5 computers, 5 tablets, AND 5 phones
+licenses can be taken off one computer and then applied to another
+
+you can be signed in to multiple office accounts at once
+
+INFO FROM MIKE (22/09/08)
+
+once you graduate, your microsoft account will be purged, including outlook and onedrive
+do not use your student email for anything unrelated to school, it will not last

@@ -1,0 +1,11 @@
+cisco packet tracer program is available to download. its yours to keep forever
+packet-tracer: free software through cisco -> localhost network bigger (.pka files)
+
+packet tracer allows you to estimate power consumption for virtual mockups of computer labs
+allows you to figure out all the hardware and interactions of a building before buying it
+also set up servers for hosting
+shows you how fast the setup will be
+shows the lights on each machine
+can set up multiple buildings, even multiple cities
+can view in diagram or in a more "street view" way
+change the way the routers are stacked in the tower

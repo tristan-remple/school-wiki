@@ -1,0 +1,50 @@
+SUBJECTS
+
+how to normalize and structure data
+know basic sql
+learn about data normalization
+complex part: learning when you need multiple tables and when you don't
+after designing databases (mariaDB) we will learn about queries
+learn how to install database software
+learn how to migrate or redesign a database (final project)
+
+MATERIALS
+
+there is a textbook, which is optional
+Database Systems: Design Implementation and Management
+
+2 assignments
+5 (quizes)
+5 tech checks
+in-class assignments every day
+
+entity diagrams
+using visual paradigm software
+
+virtual machines do not come with an OS - we can find an OS image on <a href="https://portal.azure.com">Azure</a>
+
+use windows 10 education N version 21H2 or version 21H1
+
+new machine > typical > choose the ISO of windows from azure > input product key >
+name and location of virtual machine > do not put it on onedrive > use your external
+
+vmware has a workstation interface on start
+we're also using datagrip from jetbrains (wamp equivalent?)
+>installing datagrip and mariadb prevented wamp from working! use a vm!
+
+we are using sample data (sakila)
+
+EXTRA INFO
+
+redundancy is not good in database -> possible inconsistencies
+
+some extra commands in maria that mysqli does not have - theyre both in the SQL family
+
+databases need root access to your machine
+
+container/sandbox/virtual machine : computer emulator
+host machine : computer running the emulator
+benefits : don't mess up the host, can adjust root files, admin privileges, adjust ports and ip
+
+ERD: entity relationship diagram
+entity: an object which has properties (normally a row?)

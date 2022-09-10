@@ -1,0 +1,133 @@
+body {
+    margin: 0px;
+    font-family: 'Philosopher', sans-serif;
+    font-size: 16px;
+    background-color: #7E96A1;
+    color: #1D2129;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    border-radius: 4px;
+    background-color: #A8BFC1;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: #324C67;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #324C67;
+}
+
+a:hover {
+    font-style: italic;
+}
+
+a:focus {
+    font-style: italic;
+    outline: none;
+}
+
+.verti {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #A8BFC1;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 32px;
+    text-transform: capitalize;
+    margin: 10px;
+}
+
+.link-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.top-link {
+    display: flex;
+    flex-grow: 1;
+    padding: 10px;
+    background-color: #B4E9EE;
+    justify-content: center;
+}
+
+.top-link:hover {
+    background-color: #324C67;
+    color: #A8BFC1;
+}
+
+.row-box {
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+}
+
+.left-col {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.left-img {
+    width: 90%;
+    margin: 10px;
+    border: 3px solid #1D2129;
+    border-radius: 6px;
+}
+
+.text-box {
+    width: 90%;
+    display: flex;
+    flex-grow: 1;
+    margin: 10px;
+    border: 3px solid #1D2129;
+    border-radius: 6px;
+    background-color: #A8BFC1;
+}
+
+.padded {
+    padding: 10px;
+}
+
+.center-col {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    align-items: center;
+}
+
+.right-col {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.side-link {
+    margin: 10px;
+    background-color: #B4E9EE;
+    border: 3px solid #1D2129;
+    border-radius: 6px;
+    width: 90%;
+}
+
+.side-link:hover {
+    background-color: #324C67;
+    color: #A8BFC1;
+}

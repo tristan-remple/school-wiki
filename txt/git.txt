@@ -1,0 +1,72 @@
+version control system
+-for mistakes
+-for different branches
+   -can merge branches
+-equivalent to rpg save points
+-enables teamwork
+-"push" changes onto the repository
+
+we often use skeleton code / base code / half-finished projects
+often delivered via remote repository
+
+git repository stores the CHANGES not the FILES THEMSELVES
+the files are also stored as INITIAL versions
+you don't have 5 copies of one file, you have one file and 4 changelogs
+
+see diagram
+
+LOCATIONS
+
+workspace: text editor, most current files
+stage / staging folder: location where files are locally saved but NOT committed yet
+repo: repository
+local repo: polished and finalized draft saved locally. not changed when you hit "save" in your editor
+remote repo: polished and finalized version published online
+
+CREATE FILES
+
+clone: take web respository and copy it onto your local stage
+init (-ialize): take a folder and turn it into a version-controlled project on the stage
+ -created a hidden folder called git.init which records all changes
+
+CHANGE FILES
+
+add: when you save files in your text editor, they are saved to your stage
+commit: copy file changes from the stage to the repository
+push: copy file changes from local repository to remote repository
+
+CHANGE VERSIONS (using remote repo)
+
+pull: overwrite/sync your local version with a remote repository version. lose uncommitted progress
+fetch: gets latest remote repository but does not overwrite your current changes
+ -updates your local repository but does not change your stage/workspace
+
+CHANGE VERSIONS (using local repo)
+
+checkout: roll back to a previous version (stage to workspace)
+checkout head: roll back to a previous version (local repo to workspace)
+reset: roll back from previous version (local repo to stage)
+
+COMMANDS
+
+command prompt window (git.bash)
+
+prefix all git commands with "git"
+some commands need to be followed by filenames
+
+ls: list files
+cd: change directory
+touch [filename]: create file
+git: install git
+mkdir: creates directory
+git init: initializes git in the currently selected folder
+git config --global user.name [name]: sets your username (doesnt need to be your github but it should be)
+git config --global user.email [email]: sets your email
+git show HEAD: show changes
+
+GITHUB CLASSROOM
+
+-provide skeleton code to the classroom
+-assign work
+-creates a repository for just professor and one student
+-which you use to submit work

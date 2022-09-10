@@ -1,0 +1,38 @@
+lots of exercises, quizzes, and assignments
+quizzes will be based on videos
+quiz will need to be completed before class on monday
+watch video before every class
+classtime is more workshop and consultation
+
+cite all code snippets: IEEE format
+
+backup everything all the time
+losing your files is not an excuse for delayed assignments
+
+we will be learning javascript
+-bc its popular and bc its client-side
+
+logic and programming:
+-learn how computers think
+-learn some universal concepts
+
+explaination of client side vs server side
+
+javascript has bridged over to server side recently? node.js
+
+gonna do "hello world" test code very soon
+
+distributed version control system -> less reliant on a single point of failure / server
+
+git is the most popular version control system
+
+do not use email to submit assignments
+
+we often use skeleton code / base code / half-finished projects
+often delivered via remote repository
+
+visual studio code
+can use integrated terminal to execute code (node application inside the program)
+> terminal > new terminal
+use "cd" command to file the file you want to run
+command "node [filename]" to run the file

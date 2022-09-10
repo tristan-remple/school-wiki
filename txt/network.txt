@@ -1,0 +1,46 @@
+10 lab assignments will be the grade -> no exams
+if you don't get it, more will be added
+
+brightspace units
+which are divided into modules
+presentation > lab > packet tracer > evaluation
+less a lecture more a discussion. powerpoint is chris' flashcards
+you can download the powerpoints
+email relevant links to chris, he will add them to brightspace
+
+there are extra labs that won't be assigned, do them if you're curious
+some of them are not the most efficient way to learn
+
+labs are pretty much worksheets
+
+packet tracers have a instructions doc and a .pka file
+do it and then submit it via evaluation
+submissions auto-include your w# and a timestamp
+
+programming side vs systems side
+it is normally assumed you're on one or the other
+
+no textbook for networking and security
+will be added to cisco network academy -> has more detail about n&s
+
+learn how to configure business-class switch hardware
+cisco is a major network hardware manufacturer
+ccna certification step (i will not get that cert in this course)
+cisco content has the textbook, which is supplemental
+its really big
+our brightspace course material numbers correspond to cisco textbook
+cisco textbook has optional quizes and exams
+feel free to ask questions about supplemental
+
+learn how the internet works on a hardware level
+
+learn about ip addresses and how to convert them
+
+ethernet uses frames (of information)
+
+learn about routers and their configuration
+
+talk about security: firewalls and passwords etc
+
+end project: build a whole network
+(build and troubleshoot)
