@@ -1,0 +1,39 @@
+ROWS: events
+
+COLUMNS:
+-id
+-e_code (event code)
+-title (null possible)
+-type (class, homework, deadline, meeting, study)
+-start
+-end (null possible)
+-class (6 by tag + coaching + orientation) - foreign key
+-assoc_notes (by tag)
+-assoc_events (by id)
+-status (upcoming, past, changed, cancelled)
+-details (null possible)
+-mod_start
+-mod_end
+
+ALT TABLE ROWS: important dates
+
+COLUMNS:
+-id
+-start (timestamp set to 8am)
+-end (timestamp set to 8pm)
+-holiday (yes/no)
+-title (of holiday or break)
+
+ALT TABLE ROWS: classes
+
+COLUMNS:
+-id
+-nscc_id
+-title
+-tag
+-light
+-medium
+-dark
+-semester
+-overview
+-calendar (filtered for that class)

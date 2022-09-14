@@ -46,7 +46,7 @@ if ((isset($_GET)) && (isset($_GET['id']))) {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Philosopher&display=swap">
 
-<link rel="stylesheet" type="text/css" href="css/desktop.css" media="screen and (min-width: 1000px)">
+<link rel="stylesheet" type="text/css" href="css/dark-mode.css" media="screen and (min-width: 1000px)">
 <link rel="stylesheet" type="text/css" href="css/mobile.css" media="screen and (max-width: 999px)">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
