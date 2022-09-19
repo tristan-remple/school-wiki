@@ -1,36 +1,114 @@
-aas: as a service
+<a href="#A">A</a> <a href="#B">B</a> <a href="#C">C</a> <a href="#D">D</a> <a href="#E">E</a> <a href="#F">F</a> <a href="#G">G</a> <a href="#H">H</a> <a href="#I">I</a> <a href="#J">J</a> <a href="#K">K</a> <a href="#L">L</a> <a href="#M">M</a> <a href="#N">N</a> <a href="#O">O</a> <a href="#P">P</a> <a href="#Q">Q</a> <a href="#R">R</a> <a href="#S">S</a> <a href="#T">T</a> <a href="#U">U</a> <a href="#V">V</a> <a href="#W">W</a> <a href="#X">X</a> <a href="#Y">Y</a> <a href="#Z">Z</a>
+
+<div id="A" class="heading">A</div>
+
+AAS: as a service
 
 ACL: access control list
 
-byod: bring your own device
+AD: active directory
+
+ADGP: active directory group policy. modifies installation and settings of multiple machines using a central point.
+
+attribute: property that an entity has. used like a variable.
+
+azure model: cloud-based domain model
+
+<div id="B" class="heading">B</div>
+
+BYOD: bring your own device
+
+centralized database: database stored at a single site
+
+<div id="C" class="heading">C</div>
+
+CLI: command line interface
 
 client: device which sends requests to servers
 
 cloud: anything that is stored online
 
+cloud database: database stored on the internet
+
+composite attribute: made of multiple simple attributes, ie a name= given/family name
+
+composite key: multiple fields are needed to produce a primary key equivalent. bad.
+
+control panel: another settings interface. less user-friendly, more useful
+
 convergence: put all your networks and connections in one place/cable
 
 copper wiring: electric impulses sent through copper wires. the cheapest/slowest
 
+<div id="D" class="heading">D</div>
+
+data: raw facts
+
+data dependence: data access changes when data storage characterics change
+
+data independence: can change data characteristics without compromising access
+
+data redundancy: unnecessarily storing the same info in multiple places
+
+delayed start: background processes start a bit after log in
+
 demarcation point: where the WAN connects to the LAN
+
+dependencies: service only works when other specific services are running
+
+derived attribute: aren't in the database but can be calculated using the data in the db
+
+digital signer: verifies that a driver passed through whql and has not been modified
+
+discipline-specific database: specialized info for one job ie. medical, legal
+
+distributed database: not centralized, has more hierarchy
+
+DNS: domain name system. maps a name to an ip address.
+
+domain model: not an internet domain. intranet with central administration
+
+driver: tells the OS what the hardware elements are and need
 
 DSL: digital subscriber line. dedicated to internet only
 
+<div id="E" class="heading">E</div>
+
 end device: host device; places where data originates or arrives
 
-entity: an object which has properties (normally a row?)
+entity: an object/thing which has properties
 
 ERD: entity relationship diagram
 
 extranet: provides a limited connection to your intranet to outsiders
 
+<div id="F" class="heading">F</div>
+
 fault tolerance: measures to minimize the impact of failures
 
 fiberoptics: glass transmission of light pulses
 
-ftp: file transfer protocol
+field: a character/string/etc used to define data. a place where data is stored.
+
+file: (table) collection of related records
+
+first normal form: database normalization. one piece of data per field, unique rows.
+
+foreign key: used in one table to reference another table
+
+FPP: full package product
+
+FTP: file transfer protocol
+
+<div id="G" class="heading">G</div>
+
+general purpose database: variety
 
 geofencing: registers when a device enters a "fenced" area or leaves
+
+GUI: graphic user interface
+
+<div id="H" class="heading">H</div>
 
 HAN: home area network, is also a LAN
 
@@ -39,6 +117,8 @@ host device: any device being used by a person, which has an IP address. see als
 host machine: computer running the emulator
 
 hypervisor: framework that runs virtual machines
+
+<div id="I" class="heading">I</div>
 
 IDS: intrusion detection system
 
@@ -50,21 +130,45 @@ intermediary: device which connects end devices (router, etc)
 
 intranet: a private network, not available to outsiders
 
-iot: internet of things (door opener, carbon monoxide sensor, etc)
+IOT: internet of things (door opener, carbon monoxide sensor, etc)
 
 IPS: intrustion prevention system
 
 ISP: internet service provider
 
+<div id="J" class="heading">J</div>
+
+<div id="K" class="heading">K</div>
+
+key: ID / unique attribute of an entity. used to identify a record within a file
+
+KMS: key management service (windows)
+
+<div id="L" class="heading">L</div>
+
 LAN: local area network, a network within one physical location
 
 lease line: business-specific internet cables, direct to the ISP
+
+local system account: non-user account. can start background processes before any user logs in.
 
 logical topology diagram: shows how the machines relate to each other
 
 lossy audio: removes inaudible sound and extra data, compresses by 1/10
 
+<div id="M" class="heading">M</div>
+
+MAK: multiple activation key
+
 MAN: metropolitan area network
+
+MDM: mobile deployment managing
+
+MMC: microsoft management console. the most complex and intensive settings interface
+
+MongoDB: a program for noSQL databases
+
+<div id="N" class="heading">N</div>
 
 near-field communication: tap technology and etc
 
@@ -72,9 +176,21 @@ networking: communication and connection
 
 NIC: network interface card. wifi, bluetooth, etc
 
-ntfs: permissions - New Technology File System
+noSQL: collects data without relational structure. object-oriented
 
-packet-tracer: free software through cisco -> localhost network bigger (.pka files)
+NTFS: permissions - New Technology File System
+
+<div id="O" class="heading">O</div>
+
+OEM: original equipment manufacturer
+
+operational database: stores transactions and other day-to-day operations
+
+operating system: intermediary between the programs and the hardware
+
+<div id="P" class="heading">P</div>
+
+packet tracer: free software through cisco -> localhost network bigger (.pka files)
 
 PAN: personal area network, includes all the bluetooth devices on your person
 
@@ -84,28 +200,96 @@ physical port: place where you can plug something in
 
 physical topology diagram: shows where things are in the meatspace
 
+ping: tests connection between your machine and a different ip address
+
 plenum: space between the visual ceiling and the concrete ceiling (where hvac and cables go)
+
+power shell: amped up version of command line
+
+primary key: key that is unique in its table
+
+print spooler: listens for print commands, interprets for printing, queues print jobs
+
+<div id="Q" class="heading">Q</div>
 
 QoS: quality of service. includes prioritization
 
 queuing: order of tasks
 
+<div id="R" class="heading">R</div>
+
+record: (row) a connected set of fields
+
+ribbon: bar at the top of a program with all the commands
+
+<div id="S" class="heading">S</div>
+
 scalability: potential to grow
+
+second normal form: database normalization. must have a primary key not a composite key
 
 server: device which provice services to end devices
 
+service: background software that doesn't require user interaction (windows)
+
+settings menu: the most user-friendly settings interface, commonly used by home users
+
+simple attribute: atomic value, cannot be further divided
+
 SOHO: small office / home office
 
+snap-in: package for MMC
+
+start menu: bottom left, contains programs and other helpful links
+
+structural dependence: access to a file is dependent on its structure
+
+structural independence: file structure can be changed without compromising access to the data
+
 switch: where all the network cables connect to in a building
+
+system tray: bottom right, contains background systems, clock, drivers, etc
+
+system32: folder that contains system processes
+
+<div id="T" class="heading">T</div>
+
+task menu: programs that are open, bottom bar
+
+third normal form: database normalization. each field relates to the key, not other fields.
 
 threat actors: hackers
 
 topology diagram: shows where things in the network are in relation to each other
 
+<div id="U" class="heading">U</div>
+
+<div id="V" class="heading">V</div>
+
+VAR: value added resaler
+
+variable: container or placeholder for data. like pronoun vs noun
+
 virtual machine: computer emulator
 
+VHD: virtual harddrive
+
+<div id="W" class="heading">W</div>
+
 WAN: wide area network. the internet is one
+
+whitelist: list of allowed users; all others are not allowed
+
+WHQL: windows hardware quality labs
 
 windows N: has less copyrighted stuff
 
 wireless transmission: uses radio waves
+
+workgroup model: peer-to-peer group lisence
+
+<div id="X" class="heading">X</div>
+
+<div id="Y" class="heading">Y</div>
+
+<div id="Z" class="heading">Z</div>

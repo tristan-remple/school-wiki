@@ -1,0 +1,23 @@
+an operating system is the intermediary between the programs and the hardware
+
+driver tells the OS what the hardware elements are and need
+drivers: software that communicates between hardware and your OS
+-make it so that apps dont need to compensate for every possible model of every possible device/component
+
+operating systems: windows, linux, iOS, android
+
+all progams have hardware requirements
+
+32-bit can only use 4gb of memory/ram
+
+32gb minimum disc space for win10 is the bare minimum for installation
+
+an operating system has 3 parts
+-hardware: all parts and ports
+-kernel: communicates between the hardware and the software using drivers
+-shell: the part of the OS that you see. user interface
+-drivers have to correspond to the kernel
+
+cli: command line interface
+gui: graphic user interface
+audio interfaces also exist

@@ -1,0 +1,103 @@
+logic 22-09-14
+
+QUIZ: environment setup and commenting
+
+the node.js makes your code executable
+
+using the up arrow in the command window repeats the last command
+
+github sync: commit, push (also pulls if applicable)
+
+github commit messages should be meaningful and relevant
+
+// single-line comment in js
+
+/* multiple line comment in js */
+
+red dot / break point
+
+break point: if you run the code, itll stop here and tell you the current status/variables
+
+QUIZ: input/output
+
+there are multiple correct ways to do things in js
+
+console.log prints text
+
+browsers come with a js runtime environment
+
+node.js allows you to develop client-side applications
+
+\n - creates a new line in output
+
+\ is the escape character - prevents one punctuation mark from being run as code
+
+wrap strings in single-quotes or double-quotes
+
+readlineSync.question > gets input from a user
+
+console.log > displays a message to the user
+
+EXERCISE 2 - input/output
+
+you can use var to declare variables in this course
+
+most companies have a preffered naming conventions
+
+generally speaking:
+-avoid single-letter names (n)
+-avoid acronyms and abbreviations (cat -> category)
+-avoid meaningless names (foo, var)
+
+camelBack names use case sensitivity to establish multi-word names
+
+"quotes always mark a string" a number in quotes is not an integer
+use parseInt to convert numeric strings to integers
+
+js string methods:
+startsWith()
+endsWith()
+includes()
+slice()
+toUpperCase()
+toLowerCase()
+charAt()
+split()
+replace()
+repeat()
+
+numeric operators:
++ add
+- subtract
+* multiply
+** exponentiate
+/ division
+% modulus (division remainder)
+++ increment (by 1)
+-- decrement (by 2)
+
+assignment operators
+= simple assign
++= initial variable plus second variable
+-= initial variable minus second variable
+*=
+/=
+%=
+**=
+
+and so on and so forth. an assignment variable for each numeric operator
+
+comparison operators
+-dont mix = (assignment) with == or === (check equality)
+- !== or !=== : not equal
+there are more
+they return true or false
+
+logical operators
+&& and
+|| or
+! not
+also return true or false
+
+check order of operations
+(but generally speaking, use parenthesis all the time imo)

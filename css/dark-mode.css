@@ -319,6 +319,11 @@ a:focus {
     width: 100%;
 }
 
+.heading {
+  font-size: 28px;
+  font-weight: bold;
+}
+
 .c_webdev {
     background-color: #8A3B52;
 }

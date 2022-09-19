@@ -1,0 +1,125 @@
+networking 22-09-16
+
+device configuration - switches & end devices
+
+end device has network card
+connects to a jack
+
+jack has a punchdown which connects to another cable which goes between rooms to the communications closet
+
+drop ceiling: a visual ceiling 3' below the concrete actual ceiling. makes it look neat.
+plenum: space between drop ceiling and real ceiling. contains wiring, lights, hvac, etc.
+
+conduit: a protective tube that contains cables
+
+jack: "outlet" for ethernet/internet
+
+rack unit: 1.75"
+a rack-mounted object has a height that is measured in "U" (rack unit)
+42u rack can contain 42 instances of 1u devices
+
+usually put power units on the bottom
+switches, routers, servers go on racks
+
+servers are like desktop towers but flat
+
+full rack weighs a lot and costs a lot, so its bolted to the floor
+
+patch panel: accepts network cables from jacks
+  -normally at the top of the rack
+  -then connects to the switch. switch has ports which accepts cables
+
+switch: connects devices together to form a LAN
+
+home-use switches are "unmanaged" - they connect a set number of devices directly
+
+business-class switched are "managed" - they let you tell them what to do
+-lots of ethernet ports - use these to connect to the patch panel
+-sometimes better ports (gigabit fiber ports)
+-generally rack-mounted 1u
+
+best practice is to label each patch panel port with the jack it connects to
+
+switch ports are counted in columns first, then rows
+1 3 5 7
+2 4 6 8
+
+fixed configuration: you cannot change the number or type of ports
+
+nm: network module. the plug-and-play components of non-fixed switches
+
+bay contains nms
+
+ports are numbered 0/1 0/2 0/3 etc
+the 0 means either that its fixed or that its the first nm of an unfixed switch
+on multiple bays, the second one will be 1/1 1/2 1/3 etc
+
+console port: allows you to plug in a device and enter command prompts
+
+command line devices - generally use a laptop
+connect the serial port of the laptop to the console port on the switch
+
+programs like putty go here?
+
+cisco IOS: internetwork operating system
+-tell it what to do with its ports
+-security
+-everything else
+-has SO MANY commands, which you can find in their pdf for free, but its also. SO big
+
+switches are designed to last for decades and handle a LOT of traffic
+
+a home router can handle industrial traffic for approx 3 seconds before it implodes
+
+an industrial switch is worth about $2500 and will last 20 years (situationally)
+
+an operating system has 3 parts
+-hardware: all parts and ports
+-kernel: communicates between the hardware and the software using drivers
+-shell: the part of the OS that you see. user interface
+-drivers have to correspond to the kernel
+
+cli: command line interface
+gui: graphic user interface
+audio interfaces also exist
+
+cli are less resource-intensive and more stable, but less user-friendly
+
+cisco devices normally are cli not gui (some exceptions for routers)
+
+serial: one bit at a time
+
+usb: univeral serial bus
+
+console cable: serial connection at one end, ethernet-looking one on the other (console port. not the same)
+-used to plug a laptop into a switch
+-new ones are usb
+
+ssh: secure shell - remote connection instead of console cable. encrypted
+-cant be used until the device has an ip address
+telnet: unencrypted version of ssh. its bad
+
+terminal emulation program: includes PuTTY and Tera Term and hyperterminal
+once youre plugged in, use this to enter the cli
+
+switches dont have a power button
+you plug it in and its on. forever.
+
+all cisco ports - parity/flow control only matter for modems
+9600 bits (speed - faster than your typing speed)
+8 data bits (1 byte - 1 character)
+1 stop bits (tells it when the data bit is done)
+
+cli are not backdated. you see stuff from when you plug in onwards
+no command history from before you arrive
+
+post: power on self test- checks that all hardware is all still there
+
+a real switch takes a minute to boot
+
+.bin : binary file - sort of like an iso or zip file for the os
+
+ram: only there when the computer is on
+nvram: lasts without power, actually writes
+
+look at cisco textbook chapter 2

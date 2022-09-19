@@ -2,26 +2,91 @@
 
 include("db.php");
 
-/*
+date_default_timezone_set('America/Halifax');
+
+function hours_tofloat($val){
+    if (empty($val)) {
+      return 0;
+    }
+    $parts = explode(':', $val);
+    return $parts[0] + floor(($parts[1]/60)*100) / 100;
+}
+
+/* correct date format for the id = 22-09-19 */
+
 if ((isset($_GET)) && (isset($_GET['id']))) {
-  if (preg_match('/[^a-z-]/i', $_GET['id'])) {
+  if (preg_match('/[^0-9-]/i', $_GET['id'])) {
     $error = 'url';
   } else {
     $id = $_GET['id'];
-    $q = mysqli_query($db, "SELECT * FROM `topics` WHERE `tag` = '$id'");
-    if (($q !== FALSE) && (mysqli_num_rows($q) !== 0)) {
-      $row = mysqli_fetch_array($q);
-      $error = NULL;
-    } else {
-        $error = 'url';
-    }
+    $curr_week = date('Y-m-d h:i', strtotime($id));
+    $week_end = date('Y-m-d h:i', strtotime($curr_week."+ 7 days"));
+    $error = NULL;
   }
 } else {
-    $error = 'url';
+    $curr_week = date('Y-m-d h:i', strtotime('last monday'));
+    $week_end = date('Y-m-d h:i', strtotime($curr_week."+ 7 days"));
+    $error = NULL;
 }
-*/
+
+$last_week = date('y-m-d', strtotime($curr_week."- 7 days"));
+$this_week = date('y-m-d', strtotime($curr_week));
+$next_week = date('y-m-d', strtotime($curr_week."+ 7 days"));
+
+$w_start = date('Y-m-d h:i', strtotime($curr_week.'- 5 hours'));
+$w_end = date('Y-m-d h:i', strtotime($week_end.'- 15 hours'));
+
+if ((isset($_GET)) && (isset($_GET['view']))) {
+  if (preg_match('/[^a-z-]/i', $_GET['view'])) {
+    $error = 'url';
+    $view = NULL;
+  } else {
+    $view = $_GET['view'];
+  }
+} else {
+  $view = NULL;
+}
+
+if ($view == 'class') {
+  $q = mysqli_query($db, "SELECT * FROM `sw_events` WHERE `start` > '$w_start' AND `start` < '$w_end' AND `type` = 'class'");
+} elseif ($view == 'deadline') {
+  $q = mysqli_query($db, "SELECT * FROM `sw_events` WHERE `start` > '$w_start' AND `start` < '$w_end' AND `type` = 'deadline'");
+} else {
+  $q = mysqli_query($db, "SELECT * FROM `sw_events` WHERE `start` > '$w_start' AND `start` < '$w_end' AND `type` != 'deadline'");
+}
+    if (($q !== FALSE) && (mysqli_num_rows($q) !== 0)) {
+      $error = NULL;
+    } else {
+      $error = 'no events';
+    }
+    
+    $events = [];
+    
+    foreach ($q as $row) {
+      $events += [date('Y-m-d h:i', strtotime($row['start'])) => $row];
+    }
 
 include("header.php");
+
+if ($error !== NULL) {
+  ?>
+  
+  <div class="text-box">
+    <div class="padded">
+      <?php
+      if ($error == 'no events') {
+        echo "There are no events matching your criteria.";
+      } else {
+        echo "Unable to parse query string.";
+      }
+      ?>
+      <a href="calendar.php" class="side-link"><div class="padded">Main Calendar</div></a>
+    </div>
+  </div>
+  
+  <?php
+  
+} else {
 
 ?>
     
@@ -32,8 +97,10 @@ include("header.php");
         </div>
         <div class="flex-padded">
           <div class="row-box end-btns">
-            <a class="side-link" href="info.php?id=webdev" id="lb-notes"><div class="padded">Class Notes</div></a>
-            <a class="side-link" href="info.php?id=webdev"><div class="padded">Course Overview</div></a>
+            <a class="side-link" href="info.php?id=webdev" id="info"><div class="padded">View Notes</div></a>
+            <a class="side-link" href="add-notes.php" id="add-notes"><div class="padded">Upload Notes</div></a>
+            <a class="side-link" href="add-task.php" id="add-task"><div class="padded">Add Task</div></a>
+            <a class="side-link" href="event-edit.php" id="event-edit"><div class="padded">Edit Event</div></a>
             <div class="side-link" id="close"><div class="padded">Close</div></div>
           </div>
         </div>
@@ -45,7 +112,14 @@ include("header.php");
         <div class="left-col">
             <div class="text-box">
                 <div class="padded">
-                    Controls and Filters
+                    <div class="heading">Controls and Filters</div>
+                    <br>
+                    <a href="tasks.php" class="side-link"><div class="padded">View Tasks</div></a>
+                    <a href="add-task.php" class="side-link"><div class="padded">Add Task</div></a>
+                    <a href="add-event.php" class="side-link"><div class="padded">Add Event</div></a>
+                    <br><br>
+                    <a href="calendar.php?view=class&id=<?php echo $this_week; ?>" class="side-link"><div class="padded">View Classes Only</div></a>
+                    <a href="calendar.php?view=deadline&id=<?php echo $this_week; ?>" class="side-link"><div class="padded">View Deadlines</div></a>
                 </div>
             </div>
         </div>
@@ -53,288 +127,84 @@ include("header.php");
         <table class="text-box calendar">
           <tr class="cal-head">
             <td class="time"></td>
-            <td class="arrow"><a href="calendar.php?m=22-08"><<</a></td>
-            <td colspan="5" class="cal-title title">September</td>
-            <td class="arrow"><a href="calendar.php?m=22-10">>></a></td>
+            <td class="arrow"><a href="calendar.php?id=<?php echo $last_week; ?>"><<</a></td>
+            <td colspan="5" class="cal-title title">Week of <?php echo date('F jS', strtotime($curr_week)); ?></td>
+            <td class="arrow"><a href="calendar.php?id=<?php echo $next_week; ?>">>></a></td>
           </tr>
           <tr class="weekdays">
             <td>Time</td>
-            <td>Monday</td>
-            <td>Tuesday</td>
-            <td>Wednesday</td>
-            <td>Thursday</td>
-            <td>Friday</td>
-            <td>Saturday</td>
-            <td>Sunday</td>
+            <td><?php echo date('l', strtotime($curr_week)), '</td>
+            <td>', date('l', strtotime($curr_week.'+ 1 day')), '</td>
+            <td>', date('l', strtotime($curr_week.'+ 2 days')), '</td>
+            <td>', date('l', strtotime($curr_week.'+ 3 days')), '</td>
+            <td>', date('l', strtotime($curr_week.'+ 4 days')), '</td>
+            <td>', date('l', strtotime($curr_week.'+ 5 days')), '</td>
+            <td>', date('l', strtotime($curr_week.'+ 6 days')), '</td>'; ?>
           </tr>
           <tr>
-            <td class="weekdays">8:00</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="weekdays">8:30</td>
-            <td rowspan="4" class="event c_webdev" id="c1_webdev">
-              <div class="e_title">Website Development</div>
-              <div class="e_desc">8:30 - 10:30<br>
-              ITC-D327 #class</div>
-              <div class="hidden" id="c1_webdev_h">vm</div>
-            </td>
-            <td rowspan="4" class="event c_data">
-              <div class="e_title">Data Fundamentals</div>
-              8:30 - 10:30<br>
-              ITC-D125 #class
-            </td>
-            <td rowspan="4" class="event c_network">
-              <div class="e_title">Networking & Security</div>
-              8:30 - 10:30<br>
-              ITC-D327 #class
-            </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="weekdays">9:00</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="weekdays">9:30</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="weekdays">10:00</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="weekdays">10:30</td>
-            <td rowspan="4" class="event c_windows">
-              <div class="e_title">Windows Admin</div>
-              10:30 - 12:30<br>
-              ITC-D225 #class
-            </td>
-            <td rowspan="4" class="event c_prof">
-              <div class="e_title">Prof Practices</div>
-              10:30 - 12:30<br>
-              ITC-D327 #class
-            </td>
-            <td rowspan="4" class="event c_logic">
-              <div class="e_title">Logic & Programming</div>
-              10:30 - 12:30<br>
-              ITC-D327 #class
-            </td>
-            <td rowspan="4" class="event c_data">
-              <div class="e_title">Data Fundamentals</div>
-              10:30 - 12:30<br>
-              ITC-D327 #class
-            </td>
-            <td rowspan="4" class="event c_logic">
-              <div class="e_title">Logic & Programming</div>
-              10:30 - 12:30<br>
-              ITC-D327 #class
-            </td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="weekdays">11:00</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="weekdays">11:30</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="weekdays">12:00</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="weekdays">12:30</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td rowspan="4" class="event c_network">
-              <div class="e_title">Networking & Security</div>
-              12:30 - 2:30<br>
-              ITC-D327 #class
-            </td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="weekdays">1:00</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="weekdays">1:30</td>
-            <td></td>
-            <td rowspan="4" class="event c_logic">
-              <div class="e_title">Logic & Programming</div>
-              1:30 - 3:30<br>
-              ITC-D327 #class
-            </td>
-            <td rowspan="4" class="event c_webdev">
-              <div class="e_title">"Website Development</div>
-              1:30 - 3:30<br>
-              ITC-B150A #class
-            </td>
-            <td rowspan="4" class="event c_windows">
-              <div class="e_title">Windows Admin</div>
-              1:30 - 3:30<br>
-              ITC-D327 #class
-            </td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="weekdays">2:00</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="weekdays">2:30</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="weekdays">3:00</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="weekdays">3:30</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="weekdays">4:00</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="weekdays">4:30</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="weekdays">5:00</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="weekdays">5:30</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="weekdays">6:00</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="weekdays">6:30</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+          
+          <?php
+          
+          $day_end = strtotime($curr_week.'+ 8 hours');
+          $n_time = strtotime($curr_week.'- 4 hours');
+          $d_time = date('g:i', strtotime($n_time));
+          $day = 0;
+          $e = FALSE;
+          
+          do {
+            echo '<td class="weekdays">', $d_time, '</td>';
+            do {
+              $slot = date('Y-m-d h:i', strtotime('+'.$day.' days', $n_time));
+              
+              
+              foreach ($events as $key => $value) {
+                if ($key == $slot) {
+                  $start = $value['start'];
+                  if (isset($value['end'])) {
+                    $end = $value['end'];
+                  } else {
+                    $end = $start + 1800;
+                  }
+                  $d_start = date('g:i A', strtotime($start));
+                  $d_end = date('g:i A', strtotime($end));
+                  
+                  $n_start = strtotime($start);
+                  $n_end = strtotime($end);
+                  $dif = $n_end - $n_start;
+                  $span = $dif / 1800;
+                  
+                  $letter = substr($value['type'], 0, 1);
+                  
+                  echo '<td id="', $value['e_code'], '" rowspan="', $span, '" class="event ', $letter, '_', $value['class'], '">';
+                  echo '<div class="e_title">', $value['title'], '</div>';
+                  echo '<div class=e_desc">', $d_start, ' - ', $d_end, '<br>';
+                  echo '#', $value['type'], '<br>';
+                  
+                  echo '<div class="hidden" id="', $value['e_code'], '_an">', $value['details'], '</div>';
+                  
+                  $e = TRUE;
+                }
+              }
+              if ($e == FALSE) {
+                echo '<td id="', $slot, '"></td>';
+              }
+              
+              $e = FALSE;
+              $day++;
+              if ($day > 6) {
+                echo '</tr><tr>';
+                $day = 0;
+                break;
+              }
+            } while ($day < 7);
+            
+            
+            $n_time = strtotime('+30 minutes', $n_time);
+            $d_time = date('g:i', $n_time);
+          } while ($n_time < $day_end); 
+
+          
+          ?>
           </tr>
           <!--<tr class="m_week">
             <td class="m_day"></td>
@@ -354,3 +224,12 @@ include("header.php");
             </td>
           </tr>-->
         </table>
+        
+    </div>
+    
+    <?php } ?>
+    
+    </div>
+    </body>
+    </html>
+    

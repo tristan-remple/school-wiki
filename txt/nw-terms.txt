@@ -3,7 +3,7 @@ NETWORKING
 networking is communication and connection
 it is extremely important to everything, highly integrated
 
-NETWORK DEVICES
+NETWORK DEVICES (HARDWARE)
 
 host device: any device being used by a person, which has an IP address. see also: end device
 end device: host device; places where data originates or arrives
@@ -12,6 +12,7 @@ server: device which provice services to end devices.
 -email, web, etc.
 -has multiple clients
 -more powerful than an end device
+-constructed like desktop towers but flat
 
 client: device which sends requests to servers
 -obtain webpages, emails, etc
@@ -19,6 +20,16 @@ client: device which sends requests to servers
 intermediary: device which connects end devices (router, etc).
 -regenerates and directs signals
 -sends error logs
+
+switch: connects devices together to form a LAN. intermediary
+
+fixed configuration: you cannot change the number or type of ports
+nm: network module. the plug-and-play components of non-fixed switches
+bay: the sockets where network modules go
+
+patch panel: accepts network cables from jacks. intermediary
+
+command line devices: used to configure other devices. generally use a laptop
 
 NETWORK MEDIUMS (HARDWARE)
 
@@ -33,8 +44,6 @@ near-field communication: tap technology and etc
 
 there are cables running across the ocean
 
-"its how we touch the machine"
-
 DSL: digital subscriber line. dedicated to internet only
 
 lease line: business-specific internet cables, direct to the ISP
@@ -43,6 +52,7 @@ satellite still used where cables cannot go
 keep in mind that not everyone has access to the same technology
 
 power outlets can be used for internet with an adapter
+jack: "outlet" for ethernet/internet
 
 convergence: put all your networks and connections in one place/cable
 -can include internet, phone, etc
@@ -50,6 +60,16 @@ convergence: put all your networks and connections in one place/cable
 NIC: network interface card. wifi, bluetooth, etc. often integrated into the motherboard.
 physical port: place where you can plug something in
 interface: the data associated with a physical port
+
+console port: allows you to plug in a device and enter command prompts
+connect the serial port of the laptop to the console port on the switch
+
+serial: one bit at a time
+usb: univeral serial bus
+
+console cable: serial connection at one end, console port on the other
+-used to plug a laptop into a switch
+-new ones are usb
 
 NETWORK TYPES
 
@@ -105,7 +125,7 @@ confidentiality
 integrity
 availability
 
-TRENDS
+NETWORK TRENDS
 
 byod: bring your own device
 online collaboration
@@ -136,3 +156,36 @@ internetlivestats.com web stats
 7.7bil gb transmitted (not stored) today so far
 
 phones way more popular that computers rn
+
+HARDWARE (OTHER)
+
+drop ceiling: a visual ceiling 3' below the concrete actual ceiling. makes it look neat.
+plenum: space between drop ceiling and real ceiling. contains wiring, lights, hvac, etc.
+conduit: a protective tube that contains cables
+
+rack: tower framework on which you can mount devices. bolted to the floor.
+
+rack unit: 1.75"
+a rack-mounted object has a height that is measured in "U" (rack unit)
+42u rack can contain 42 instances of 1u devices
+
+SOFTWARE
+
+an operating system has 3 parts
+-hardware: all parts and ports
+-kernel: communicates between the hardware and the software using drivers
+  -drivers have to correspond to the kernel
+-shell: the part of the OS that you see. user interface can be cli or gui
+
+cli: command line interface
+gui: graphic user interface
+
+ssh: secure shell - remote connection instead of console cable. encrypted
+-cant be used until the device has an ip address
+telnet: unencrypted version of ssh. its bad
+
+terminal emulation program: allows a laptop to control another device by emulating it
+
+post: power on self test- checks that all hardware is all still there
+
+.bin : binary file - sort of like an iso or zip file for the os

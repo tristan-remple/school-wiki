@@ -1,0 +1,61 @@
+INTERFACE COMPONENTS
+
+start menu: bottom left, contains programs and other helpful links
+task menu: programs that are open, bottom bar
+system tray: bottom right, contains background systems, clock, drivers, etc
+
+ribbon: bar at the top of a program with all the commands
+
+settings menu: the most user-friendly settings interface, commonly used by home users
+control panel: another settings interface. less user-friendly, more useful
+mmc: microsoft management console. the most complex and intensive settings interface
+snap-in: package/module for mmc
+
+PROGRAMS
+
+operating system: the intermediary between the programs and the hardware
+service: background software that doesn't require user interaction
+drivers: software that communicates between hardware and your OS
+
+command prompt (cmd.exe) or power shell
+-both allow you to run commands
+-power shell is more intuitive and powerful
+-kind of like comand prompt plus
+
+task scheduler: run commands & scripts automatically on a schedule
+
+LISENCING
+
+var: value added resaler - for large agreements
+oem: original equipment manufacturer
+fpp: full package product - is theoretically transferrable
+volume liscencing: used for enterprises, allows customized installs
+cloud liscencing: connects to azure ad, online verification
+ad: active directory
+mdm: mobile deployment managing
+mak: multiple activation key
+kms: key management service
+
+workgroup model: peer-to-peer group lisence
+domain model: not an internet domain. intranet with central administration
+azure model: cloud-based domain model
+
+home edition: basic user OS
+pro edition: more centralized, more permissions and policies
+pro workstation edition: between pro and enterprise
+domain edition: allows access to the same desktop from any computer on the LAN
+enterprise: extended support, less bloatware
+education edition: includes pro/enterprise features but not tips and tricks
+N edition (europe) / K edition (korea): no media player or inclusions
+
+ETC
+
+VHD: virtual harddrive
+system32: folder which contains system processes
+
+delayed start: background processes start a bit after log in
+local system account: can start background processes before any user logs in
+dependencies: fax depends on print spooler etc
+
+digital signer: verifies that a driver passed through whql and has not been modified
+whql: windows hardware quality labs

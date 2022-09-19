@@ -1,0 +1,57 @@
+console port: allows you to plug in a device and enter command prompts
+
+command line devices - generally use a laptop
+connect the serial port of the laptop to the console port on the switch
+
+cisco IOS: internetwork operating system. unrelated to iOS (apple)
+-tell it what to do with its ports
+-security
+-everything else
+-has SO MANY commands, which you can find in their pdf for free, but its also. SO big
+
+switches are designed to last for decades and handle a LOT of traffic
+a home router can handle industrial traffic for approx 3 seconds before it implodes
+an industrial switch is worth about $2500 and will last 20 years (situationally)
+
+an operating system has 3 parts
+-hardware: all parts and ports
+-kernel: communicates between the hardware and the software using drivers
+-shell: the part of the OS that you see. user interface
+drivers have to correspond to the kernel
+
+cli: command line interface
+gui: graphic user interface
+audio interfaces also exist
+
+cli are less resource-intensive and more stable, but less user-friendly
+cisco devices are normally cli not gui (some exceptions for routers)
+
+serial: one bit at a time
+usb: univeral serial bus
+
+console cable: serial connection at one end, ethernet-looking one on the other (console port. not the same)
+-used to plug a laptop into a switch
+-new ones are usb
+
+ssh: secure shell - remote connection instead of console cable. encrypted
+-cant be used until the device has an ip address
+telnet: unencrypted version of ssh. its bad
+
+terminal emulation program: includes PuTTY and Tera Term and hyperterminal
+-once youre plugged in, use this to enter the cli
+-allows the laptop to emulate the switch
+
+switches dont have a power button
+you plug it in and its on. forever.
+a real switch takes a minute to boot
+
+all cisco port configuration
+9600 bits (speed - faster than your typing speed)
+8 data bits (1 byte - 1 character)
+1 stop bits (tells it when the data bit is done)
+parity/flow control only matter for modems
+
+cli are not backdated. you see stuff from when you plug in onwards
+no command history from before you arrive
+
+post: power on self test- checks that all hardware is all still there

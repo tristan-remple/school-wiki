@@ -12,6 +12,9 @@
 <link rel="stylesheet" type="text/css" href="css/dark-mode.css" media="screen and (min-width: 1000px)">
 <link rel="stylesheet" type="text/css" href="css/mobile.css" media="screen and (max-width: 999px)">
 
+<meta name="author" content="Tristan Remple">
+<meta name="robots" content="noindex nofollow">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="js/lightbox.js"></script>
 <script src="js/select.js"></script>
@@ -25,12 +28,9 @@
     <div class="header">
         <div class="title">Knowledge Base</div>
         <div class="link-row">
-            <a class="top-link" href="info.php?id=orientation">Orientation</a>
-            <a class="top-link" href="info.php?id=data">Data Fundamentals</a>
-            <a class="top-link" href="info.php?id=logic">Logic & Programming</a>
-            <a class="top-link" href="info.php?id=network">Networking & Security</a>
-            <a class="top-link" href="info.php?id=prof">Professional Practices</a>
-            <a class="top-link" href="info.php?id=webdev">Web Development</a>
-            <a class="top-link" href="info.php?id=windows">Windows Administration</a>
+            <a class="top-link" href="calendar.php">Calendar</a>
+            <a class="top-link" href="tasks.php">Task List</a>
+            <a class="top-link" href="info.php?id=orientation">Courses & Notes</a>
+            <a class="top-link" href="info.php?id=definitions">Definitions</a>
         </div>
     </div>

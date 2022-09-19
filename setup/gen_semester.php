@@ -1,21 +1,6 @@
 <?php
 
-$server = "localhost";
-$user = "root";
-$pass = NULL;
-$dbase = "commissions";
-
-$db = new mysqli($server, $user, $pass, $dbase);
-
-unset($server);
-unset($user);
-unset($pass);
-unset($dbase);
-
-if ($db -> connect_errno) {
-  echo "Failed to connect to MySQL: " . $db -> connect_error;
-  exit();
-}
+include("../db.php");
 
 $term = "CREATE TABLE `commissions`.`semesters` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
@@ -26,7 +11,7 @@ $term = "CREATE TABLE `commissions`.`semesters` (
   PRIMARY KEY (`id`) )
   ENGINE = InnoDB";
   
-  include("header.php");
+  include("../header.php");
    
 ?>
     

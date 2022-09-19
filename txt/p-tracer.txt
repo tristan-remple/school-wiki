@@ -9,3 +9,23 @@ shows the lights on each machine
 can set up multiple buildings, even multiple cities
 can view in diagram or in a more "street view" way
 change the way the routers are stacked in the tower
+can copy+paste configs from packet tracer to real routers etc
+
+packet tracer labs come in two parts:
+-instructions / form to fill out (docx)
+-packet tracer file (pka)
+
+-pka: packet tracer assessment - includes instructions and auto-marking
+-pkt: default file format for packet tracer
+
+pka pop-out instructions contain the progress percentage, which is your mark
+recommended to read the objectives instead of skipping to instructions
+
+solid lines are wired
+dashed lines are wireless (sideways dashes)
+
+click a cloud to see the wiring inside it
+click the back arrow to escape the cloud back to the main page
+
+click on a device and go to the CLI tab to access its programming
+change fonts on CLI by preferences > font > router IOS

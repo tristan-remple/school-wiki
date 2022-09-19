@@ -1,0 +1,56 @@
+String Methods
+
+startsWith() checks beginning of string for a match, returns true/false
+endsWith() checks end of string for a match, returns true/false
+includes() checks entire string for a match, returns true/false
+slice() creates a new string which is a fragment of the original string
+toUpperCase() creates a new string in all-caps
+toLowerCase() creates a new string with all lower-case letters
+charAt() tells you what character is in a specific position
+split() creates an array from the string, split by a character/sequence of your choosing
+replace() creates a string with some parts replaced (find + replace)
+repeat() creates a new string which repeats the original string a set number of times
+
+Numeric Operators
+
++ add
+- subtract
+* multiply
+** exponentiate
+/ division
+% modulus (division remainder)
+++ increment (by 1)
+-- decrement (by 1)
+
+Assignment Operators
+
+= simple assign
++= initial value plus second value
+-= initial value minus second value
+*=
+/=
+%=
+**=
+and so on and so forth. an assignment variable for each numeric operator
+
+Comparison Operators
+
+dont mix = (assignment) with == or === (check equality)
+== equal value
+=== equal value and equal type
+!== or !=== : not equal
+> greater than
+< less than
+>= greater or equal
+<= less or equal
+they return true or false
+
+Logical Operators
+
+&& and
+|| or
+! not
+also return true or false
+
+check order of operations
+but generally speaking, use parenthesis all the time

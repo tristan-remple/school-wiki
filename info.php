@@ -1,20 +1,18 @@
 <?php
 
-$server = "localhost";
-$user = "root";
-$pass = NULL;
-$dbase = "commissions";
+include("db.php");
 
-$db = new mysqli($server, $user, $pass, $dbase);
-
-unset($server);
-unset($user);
-unset($pass);
-unset($dbase);
-
-if ($db -> connect_errno) {
-  echo "Failed to connect to MySQL: " . $db -> connect_error;
-  exit();
+function last_monday($date) {
+  if (!is_numeric($date)) {
+    $date = strtotime($date);
+  }
+  if (date('w', $date) == 1) {
+    $base = $date;
+    return date('Y-m-d', $base);
+  } else {
+    $base = strtotime('last monday', $date);
+    return date('Y-m-d', $base);
+  }
 }
 
 if ((isset($_GET)) && (isset($_GET['id']))) {
@@ -30,69 +28,108 @@ if ((isset($_GET)) && (isset($_GET['id']))) {
         $error = 'url';
     }
   }
+} elseif ((isset($_GET)) && (isset($_GET['n']))) {
+  if (preg_match('/[^a-z0-9-_]/i', $_GET['n'])) {
+    $error = 'url';
+  } else {
+    $id = NULL;
+    $ne = $_GET['n'];
+    $qn = mysqli_query($db, "SELECT * FROM `sw_events` WHERE `e_code` = '$ne'");
+    if (($qn !== FALSE) && (mysqli_num_rows($qn) !== 0)) {
+      $rn = mysqli_fetch_array($qn);
+      $n = $rn['class'].'-'.date('Y-m-d', strtotime($rn['start']));
+      $error = NULL;
+    }
+  }
 } else {
     $error = 'url';
 }
 
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
+include("header.php");
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Philosopher&display=swap">
-
-<link rel="stylesheet" type="text/css" href="css/dark-mode.css" media="screen and (min-width: 1000px)">
-<link rel="stylesheet" type="text/css" href="css/mobile.css" media="screen and (max-width: 999px)">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<title>Knowledge Base</title>
-
-</head>
-<body>
-<div class="verti">
-    
-    <?php if ($error == NULL) { ?>
-    
-    <div class="header">
-        <div class="title">Knowledge Base</div>
-        <div class="link-row">
-            <a class="top-link" href="info.php?id=orientation">Orientation</a>
-            <a class="top-link" href="info.php?id=data">Data Fundamentals</a>
-            <a class="top-link" href="info.php?id=logic">Logic & Programming</a>
-            <a class="top-link" href="info.php?id=network">Networking & Security</a>
-            <a class="top-link" href="info.php?id=prof">Professional Practices</a>
-            <a class="top-link" href="info.php?id=webdev">Web Development</a>
-            <a class="top-link" href="info.php?id=windows">Windows Administration</a>
-        </div>
-    </div>
+if ($error == NULL) { ?>
     
     <div class="row-box">
         
         <div class="left-col">
-            <?php if (isset($row['img'])) {
+            <?php
+            
+            if ($id !== NULL) {
+            
+            if (isset($row['img'])) {
                 echo '<img class="left-img" src="img/', $row['img'], '.png">';
             } ?>
             <div class="text-box">
                 <div class="padded">
-                    Date initiated: <?php echo date('M jS, Y', strtotime($row['date'])); ?><br>
-                    Page type: <?php echo $row['type']; ?>
+                    <?php
+                    
+                    $type = $row['type'];
+                    
+                    echo '<a class="side-link" href="info.php?n=', $type, '-', date('Y-m-d', strtotime($row['date'])), '"><div class="padded">', date('M jS, Y', strtotime($row['date'])), '</div></a>';
+                    echo '<br><br>';
+                    
+                    $qc = mysqli_query($db, "SELECT `title` FROM `class_list` WHERE `tag` = '$type'");
+                    if (($qc !== FALSE) && (mysqli_num_rows($qc) !== 0)) {
+                      $cr = mysqli_fetch_array($qc);
+                      echo '<a href="info.php?id=', $type, '" class="side-link"><div class="padded">', $cr['title'], '</div></a>';
+                    } else {
+                      echo 'Page type: ', $type;
+                    }
+                    
+                    echo '<a class="side-link" href="edit-topic.php?id=', $id, '"><div class="padded">Edit Topic</div></a>';
+                    
+                    ?>
                 </div>
             </div>
+            
+            <?php
+            
+            } else {
+              
+              echo '<div class="text-box">
+                <div class="padded">';
+                $date = substr($n, -10);
+                $course = explode('-', $n);
+                $c = $course[0];
+                
+                $monday = last_monday($date);
+                
+                echo 'These notes were taken on ', $date, '.<br><br>';
+                
+                echo '<a class="side-link" href="calendar.php?id=', $monday, '"><div class="padded">View Week</div></a>';
+                echo '<a class="side-link" href="edit-notes.php?id=', $n, '"><div class="padded">Edit Notes</div></a>';
+                echo '<a class="side-link" href="add-topic.php?n=', $n, '"><div class="padded">Create Topic</div></a>';
+                
+                $crs_q = mysqli_query($db, "SELECT `title` FROM `class_list` WHERE `tag` = '$c'");
+                if (($crs_q !== FALSE) && (mysqli_num_rows($crs_q) !== 0)) {
+                  $crs_row = mysqli_fetch_array($crs_q);
+                  echo '<a class="side-link" href="info.php?id=', $c, '"><div class="padded">', $crs_row['title'], '</div></a>';
+                }
+                
+                echo '</div></div>';
+              
+            }
+            
+            ?>
         </div>
         
         <div class="center-col">
             <div class="text-box">
                 <div class="padded">
+                  
+                  <?php if ($id !== NULL) { ?>
                     <h1><?php echo $row['title']; ?></h1>
                     <?php
                     
                     $filepath = 'txt/'.$row['tag'].'.txt';
+                    
+                    } else {
+                      
+                      $filepath = 'raw/'.$n.'.txt';
+                      
+                    }
+                    
+                    if (file_exists($filepath)) {
                     
                     $text = fopen($filepath, "r") or die("The specified text could not be found.");
                     while (!feof($text)) {
@@ -100,10 +137,16 @@ if ((isset($_GET)) && (isset($_GET['id']))) {
                     }
                     fclose($text);
                     
+                    } else {
+                      echo 'The specified text could not be found.';
+                    }
+                    
                     ?>
                 </div>
             </div>
         </div>
+        
+        <?php if ($id !== NULL) { ?>
         
         <div class="right-col">
             
@@ -131,7 +174,19 @@ if ((isset($_GET)) && (isset($_GET['id']))) {
         
         </div>
         
-        <?php } else {
+        <?php
+        } else {
+          
+          $start = $rn['start'];
+          $qr = mysqli_query($db, "SELECT * FROM `topics` WHERE `type` = '$c' AND `date` = '$start'");
+          if (($qr !== FALSE) && (mysqli_num_rows($qr) !== 0)) {
+            echo '<div class="right-col">';
+            while ($rr = mysqli_fetch_array($qr)) {
+              echo '<a class="side-link" href="info.php?id=', $rr['tag'], '"><div class="padded">', $rr['title'], '</div></a>';
+            }
+          }
+        }
+        } else {
             echo '<div class="text-box"><div class="padded">Incorrect URL</div></div>';
         } ?>
         

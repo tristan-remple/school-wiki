@@ -1,0 +1,37 @@
+Basic Syntax
+
+() after a word in javascript notes that its a function
+a word with no () is a variable
+you can put parameters into the ()
+
+. is an action within a function
+
+// single-line comment in js
+/* multiple line comment in js */
+
+\ is the escape character - prevents one punctuation mark from being run as code
+
+you can use var to declare variables in this course
+(there are other ways)
+
+Testing Code with CLI
+
+command "node" when node.js is installed
+"node [filename]" runs the file in the command window
+
+console.log prints text
+\n - creates a new line in output
+
+using the up arrow in the command window repeats the last command
+
+Readline Sync
+
+gets input from a CLI user
+
+use "npm install readline-sync" in the console to install the readlineSync package
+"var readlineSync = require('readline-sync');" goes at the top of your code to enable it
+
+use case example:
+var earningsPerShare = readlineSync.question("How much did you earn per share this year?");
+
+this returns a STRING all the time. use parseInt to convert integers
