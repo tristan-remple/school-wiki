@@ -1,0 +1,10 @@
+# "do not upload" folder, mostly personal notes and planning txt files
+/\!dnu
+
+# folders containing the actual notes displayed on info.php
+/raw
+/txt
+/img
+
+# establishes database connection
+db.php
