@@ -34,11 +34,21 @@ if ((isset($_GET)) && (isset($_GET['id']))) {
   } else {
     $id = NULL;
     $ne = $_GET['n'];
-    $qn = mysqli_query($db, "SELECT * FROM `sw_events` WHERE `e_code` = '$ne'");
+    $narr = explode('-', $ne, 2);
+    $class_tag = $narr[0];
+    $class_date = $narr[1];
+    $qn = mysqli_query($db, "SELECT * FROM `class_list` WHERE `tag` = '$class_tag'");
     if (($qn !== FALSE) && (mysqli_num_rows($qn) !== 0)) {
-      $rn = mysqli_fetch_array($qn);
-      $n = $rn['class'].'-'.date('Y-m-d', strtotime($rn['start']));
-      $error = NULL;
+      $filepath = 'raw/'.$ne.'.txt';
+      if (file_exists($filepath)) {
+        $n = $ne;
+        $error = NULL;
+      } else {
+        $error = 'We couldn\'t find notes from '.$class_tag.' that day.
+        <a class="side-link" href="info.php?id='.$class_tag.'"><div class="padded">View Course</div></a>';
+       }
+    } else {
+      $error = $class_tag.' isn\'t a subject.';
     }
   }
 } else {
@@ -65,15 +75,15 @@ if ($error == NULL) { ?>
                     
                     $type = $row['type'];
                     
-                    echo '<a class="side-link" href="info.php?n=', $type, '-', date('Y-m-d', strtotime($row['date'])), '"><div class="padded">', date('M jS, Y', strtotime($row['date'])), '</div></a>';
-                    echo '<br><br>';
-                    
                     $qc = mysqli_query($db, "SELECT `title` FROM `class_list` WHERE `tag` = '$type'");
                     if (($qc !== FALSE) && (mysqli_num_rows($qc) !== 0)) {
                       $cr = mysqli_fetch_array($qc);
+                      echo '<a class="side-link" href="info.php?n=', $type, '-', date('Y-m-d', strtotime($row['date'])), '">
+                      <div class="padded">', date('M jS, Y', strtotime($row['date'])), '</div></a>';
                       echo '<a href="info.php?id=', $type, '" class="side-link"><div class="padded">', $cr['title'], '</div></a>';
                     } else {
-                      echo 'Page type: ', $type;
+                      echo 'Page type: ', $type, '<br>
+                      Notes initiated: ', date('M jS, Y', strtotime($row['date']));
                     }
                     
                     echo '<a class="side-link" href="edit-topic.php?id=', $id, '"><div class="padded">Edit Topic</div></a>';
@@ -175,20 +185,13 @@ if ($error == NULL) { ?>
         </div>
         
         <?php
-        } else {
-          
-          $start = $rn['start'];
-          $qr = mysqli_query($db, "SELECT * FROM `topics` WHERE `type` = '$c' AND `date` = '$start'");
-          if (($qr !== FALSE) && (mysqli_num_rows($qr) !== 0)) {
-            echo '<div class="right-col">';
-            while ($rr = mysqli_fetch_array($qr)) {
-              echo '<a class="side-link" href="info.php?id=', $rr['tag'], '"><div class="padded">', $rr['title'], '</div></a>';
-            }
-          }
         }
-        } else {
+        } elseif ($error == 'url') {
             echo '<div class="text-box"><div class="padded">Incorrect URL</div></div>';
-        } ?>
+        } else {
+          echo '<div class="text-box"><div class="padded">', $error, '</div></div>';
+        }
+        ?>
         
     </div>
     
