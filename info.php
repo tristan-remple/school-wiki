@@ -36,7 +36,6 @@ if ((isset($_GET)) && (isset($_GET['id']))) {
     $ne = $_GET['n'];
     $narr = explode('-', $ne, 2);
     $class_tag = $narr[0];
-    $class_date = $narr[1];
     $qn = mysqli_query($db, "SELECT * FROM `class_list` WHERE `tag` = '$class_tag'");
     if (($qn !== FALSE) && (mysqli_num_rows($qn) !== 0)) {
       $filepath = 'raw/'.$ne.'.txt';
@@ -46,9 +45,23 @@ if ((isset($_GET)) && (isset($_GET['id']))) {
       } else {
         $error = 'We couldn\'t find notes from '.$class_tag.' that day.
         <a class="side-link" href="info.php?id='.$class_tag.'"><div class="padded">View Course</div></a>';
-       }
+      }
     } else {
-      $error = $class_tag.' isn\'t a subject.';
+      $qe = mysqli_query($db, "SELECT * FROM `sw_events` WHERE `e_code` = '$ne'");
+      if (($qe !== FALSE) && (mysqli_num_rows($qe) !== 0)) {
+        $erow = mysqli_fetch_array($qe);
+        $filename = $erow['class'].'-'.date('Y-m-d', strtotime($erow['start']));
+        $filepath = 'raw/'.$filename.'.txt';
+        if (file_exists($filepath)) {
+          $n = $filename;
+          $error = NULL;
+        } else {
+          $error = 'We couldn\'t find notes from '.$erow['title'].' that day.
+          <a class="side-link" href="info.php?id='.$erow['class'].'"><div class="padded">View Course</div></a>';
+        }
+      } else {
+        $error = $class_tag.' isn\'t a subject or event.';
+      }
     }
   }
 } else {

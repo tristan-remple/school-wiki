@@ -4,7 +4,9 @@ $(document).ready(function() {
 		$(".lightbox-bg").removeClass("hidden");
 		var id = $(this).attr("id");
 		var html = $("#"+id).html();
-		var hid = $("#"+id+"_as").html();
+		var hid = $("#"+id+"_an").html();
+		var dateID = $("#"+id+"_date").text();
+		html = dateID+"<br><br>"+html;
 		if (hid !== undefined) {
 			var html2 = html+"<br><br>"+hid;
 			$("#lb-content").html(html2);

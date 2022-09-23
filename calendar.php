@@ -150,42 +150,87 @@ if ($error !== NULL) {
           $d_time = date('g:i', strtotime($n_time));
           $day = 0;
           $e = FALSE;
+          $holiq = mysqli_query($db, "SELECT * FROM `holidays` WHERE `start` > '$w_start' AND `start` < '$w_end'");
+          if (($holiq !== FALSE) && (mysqli_num_rows($holiq) !== 0)) {
+            while ($h = mysqli_fetch_array($holiq)) {
+              if (!isset($holiday)) {
+                $holiday = date('Y-m-d', strtotime($h['start']));
+                $hol = '<td rowspan="24" id="holiday" class="event">
+                <div class="e_title">'.$h['title'].'</div>
+                </td>';
+              } else {
+                $holi_arr = array($holiday => $hol);
+                $holiday2 = date('Y-m-d', strtotime($h['start']));
+                $hol2 = '<td rowspan="24" id="holiday" class="event">
+                <div class="e_title">'.$h['title'].'</div>
+                </td>';
+                $holi_arr += [$holiday2 => $hol2];
+              }
+            }
+          } else {
+            $holiday = FALSE;
+          }
           
           do {
             echo '<td class="weekdays">', $d_time, '</td>';
             do {
               $slot = date('Y-m-d h:i', strtotime('+'.$day.' days', $n_time));
+              $day_array = explode(' ', $slot);
+              $d_only = $day_array[0];
               
+              if (($d_only == $holiday) && ($d_time == '8:00')) {
+                echo $hol;
+                $e = TRUE;
+              } elseif ((isset($holi_arr)) && ($d_time == '8:00')) {
+                foreach ($holi_arr as $holidate => $holibox) {
+                  if ($d_only == $holidate) {
+                    echo $holibox;
+                    $e = TRUE;
+                  }
+                }
+              }
               
               foreach ($events as $key => $value) {
                 if ($key == $slot) {
                   $start = $value['start'];
-                  if (isset($value['end'])) {
-                    $end = $value['end'];
-                  } else {
-                    $end = $start + 1800;
+                  
+                  $ddd = date('Y-m-d', strtotime($start));
+                  
+                  if (((!isset($holi_arr)) && ($ddd !== $holiday)) || ((isset($holi_arr)) && (!array_key_exists($ddd, $holi_arr)))) {
+                    
+                    if (isset($value['end'])) {
+                      $end = $value['end'];
+                    } else {
+                      $end = $start + 1800;
+                    }
+                    $d_start = date('g:i A', strtotime($start));
+                    $d_end = date('g:i A', strtotime($end));
+                    
+                    $n_start = strtotime($start);
+                    $n_end = strtotime($end);
+                    $dif = $n_end - $n_start;
+                    $span = $dif / 1800;
+                    
+                    $letter = substr($value['type'], 0, 1);
+                    
+                    echo '<td id="', $value['e_code'], '" rowspan="', $span, '" class="event ', $letter, '_', $value['class'], '">';
+                    echo '<div class="e_title">', $value['title'], '</div>';
+                    echo '<div class=e_desc">', $d_start, ' - ', $d_end, '<br>';
+                    echo '#', $value['type'], '<br>';
+                    if (isset($value['content'])) {
+                      echo '*', $value['content'], '<br>';
+                    }
+                    
+                    echo '<div class="hidden" id="', $value['e_code'], '_an">', $value['details'], '</div>';
+                    echo '<div class="hidden" id="', $value['e_code'], '_date">', date('F jS, Y', strtotime($start)), '</div>
+                    </div>';
+                    
                   }
-                  $d_start = date('g:i A', strtotime($start));
-                  $d_end = date('g:i A', strtotime($end));
-                  
-                  $n_start = strtotime($start);
-                  $n_end = strtotime($end);
-                  $dif = $n_end - $n_start;
-                  $span = $dif / 1800;
-                  
-                  $letter = substr($value['type'], 0, 1);
-                  
-                  echo '<td id="', $value['e_code'], '" rowspan="', $span, '" class="event ', $letter, '_', $value['class'], '">';
-                  echo '<div class="e_title">', $value['title'], '</div>';
-                  echo '<div class=e_desc">', $d_start, ' - ', $d_end, '<br>';
-                  echo '#', $value['type'], '<br>';
-                  
-                  echo '<div class="hidden" id="', $value['e_code'], '_an">', $value['details'], '</div>';
                   
                   $e = TRUE;
                 }
               }
-              if ($e == FALSE) {
+              if (($e == FALSE) && ($d_only !== $holiday)) {
                 echo '<td id="', $slot, '"></td>';
               }
               
