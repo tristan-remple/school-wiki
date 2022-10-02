@@ -1,7 +1,8 @@
 $(document).ready(function() {
 	
+	var color = "c_webdev";
+	
 	$(".event").click(function() {
-		$(".lightbox-bg").removeClass("hidden");
 		var id = $(this).attr("id");
 		var html = $("#"+id).html();
 		var hid = $("#"+id+"_an").html();
@@ -14,6 +15,10 @@ $(document).ready(function() {
 			$("#lb-content").html(html);
 		}
 		
+		var classes = $(this).attr("class");
+		color = classes.substring(5);
+		$(".lightbox").addClass(color);
+		
 		var notes = "info.php?n="+id;
 		$("#info").attr("href", notes);
 		var elink = "event-edit.php?id="+id;
@@ -22,10 +27,13 @@ $(document).ready(function() {
 		$("#add-notes").attr("href", addnote);
 		var task = "add-task.php?id="+id;
 		$("#add-task").attr("href", task);
+		
+		$(".lightbox-bg").removeClass("hidden");
 	});
 	
 	$("#close").click(function() {
 		$(".lightbox-bg").addClass("hidden");
+		$(".lightbox").removeClass(color);
 	});
 	
 });

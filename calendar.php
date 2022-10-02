@@ -63,7 +63,11 @@ if ($view == 'class') {
     $events = [];
     
     foreach ($q as $row) {
-      $events += [date('Y-m-d h:i', strtotime($row['start'])) => $row];
+      if ($row['mod_start'] == NULL) {
+        $events += [date('Y-m-d h:i', strtotime($row['start'])) => $row];
+      } else {
+        $events += [date('Y-m-d h:i', strtotime($row['mod_start'])) => $row];
+      }
     }
 
 include("header.php");
@@ -91,7 +95,7 @@ if ($error !== NULL) {
 ?>
     
     <div class="lightbox-bg hidden">
-      <div class="lightbox text-box c_webdev">
+      <div class="lightbox text-box">
         <div class="padded" id="lb-content">
           Meep
         </div>
@@ -192,13 +196,19 @@ if ($error !== NULL) {
               
               foreach ($events as $key => $value) {
                 if ($key == $slot) {
-                  $start = $value['start'];
+                  if ($value['mod_start'] == NULL) {
+                    $start = $value['start'];
+                  } else {
+                    $start = $value['mod_start'];
+                  }
                   
                   $ddd = date('Y-m-d', strtotime($start));
                   
                   if (((!isset($holi_arr)) && ($ddd !== $holiday)) || ((isset($holi_arr)) && (!array_key_exists($ddd, $holi_arr)))) {
                     
-                    if (isset($value['end'])) {
+                    if (isset($value['mod_end'])) {
+                      $end = $value['mod_end'];
+                    } elseif (isset($value['end'])) {
                       $end = $value['end'];
                     } else {
                       $end = $start + 1800;
@@ -212,8 +222,13 @@ if ($error !== NULL) {
                     $span = $dif / 1800;
                     
                     $letter = substr($value['type'], 0, 1);
+                    if ($value['status'] !== 'cancelled') {
+                      $color = $letter.'_'.$value['class'];
+                    } else {
+                      $color = 'active';
+                    }
                     
-                    echo '<td id="', $value['e_code'], '" rowspan="', $span, '" class="event ', $letter, '_', $value['class'], '">';
+                    echo '<td id="', $value['e_code'], '" rowspan="', $span, '" class="event ', $color, '">';
                     echo '<div class="e_title">', $value['title'], '</div>';
                     echo '<div class=e_desc">', $d_start, ' - ', $d_end, '<br>';
                     echo '#', $value['type'], '<br>';
